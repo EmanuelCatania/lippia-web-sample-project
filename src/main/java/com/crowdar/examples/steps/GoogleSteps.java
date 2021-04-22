@@ -2,28 +2,28 @@ package com.crowdar.examples.steps;
 
 import com.crowdar.core.Injector;
 import com.crowdar.core.PageSteps;
-import com.crowdar.examples.pages.GoogleHomePage;
-import com.crowdar.examples.pages.GoogleSearchResultPage;
+import com.crowdar.examples.pages.PHPTravelsHomePage;
+//import com.crowdar.examples.pages.GoogleSearchResultPage;
+import com.crowdar.examples.pages.PHPTravlesAboutPage;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 
 public class GoogleSteps extends PageSteps {
 
-    @Given("The client is in google page")
+    @Given("The user is in home page")
     public void home() {
-        Injector._page(GoogleHomePage.class).go();
+        Injector._page(PHPTravelsHomePage.class).go();
     }
 
-    @When("The client search for word (.*)")
-    public void search(String criteria) {
-        Injector._page(GoogleHomePage.class).enterSearchCriteria(criteria);
-        Injector._page(GoogleHomePage.class).clickSearchButton();
+    @When("The user go to About Us page")
+    public void about() {
+        Injector._page(PHPTravelsHomePage.class).clickAoutButton();
 
     }
 
-    @Then("The client verify that results are shown properly")
+    @Then("The About Us page is displayed")
     public void statVerfication() {
-        Assert.assertTrue(!Injector._page(GoogleSearchResultPage.class).getStats().isEmpty());
+        Injector._page(PHPTravlesAboutPage.class).verificarAboutUsSection();
 
     }
 }
